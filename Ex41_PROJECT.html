@@ -7,7 +7,6 @@
 <body>
 
 <h2>급여 관리 시스템 지원 양식</h2>
-
  <form name="payManage">
  <table>
      <tr>
@@ -85,22 +84,23 @@
 <script type="text/javascript">
 	let resultfrm =  document.forms["resultForm"];
 	
-	function resultSal(frm){
+	function resultSal(frm){		
 		let name = frm.name.value;
 		let basicPay = parseInt(frm.basicPay.value);
-		let license = parseInt(frm.license.value);
-		let child = parseInt(frm.child.value);
+		let license = parseInt((frm.license.value!='')?frm.license.value:0);
+		let child = parseInt((frm.child.checked)?frm.child.value:0);
 		let merit = parseInt((frm.merit.checked)?frm.merit.value:0);
 		let longterm = parseInt((frm.longterm.checked)?frm.longterm.value:0);
 		
-		resultfrm.resultName.value = name;			//이름
-	 	resultfrm.resultBasicPay.value = basicPay;	//기본급
-		resultfrm.resultLicense.value = license;		//자격증수당
-		resultfrm.resultChild.value = child;			//자녀수당
-		resultfrm.resultEtc.value	= merit+longterm;	//기타수당
+		resultfrm.resultName.value = name;					//이름
+	 	resultfrm.resultBasicPay.value = basicPay;			//기본급
+		resultfrm.resultLicense.value = license;			//자격증수당
+		resultfrm.resultChild.value = child;				//자녀수당
+		resultfrm.resultEtc.value	= merit+longterm;		//기타수당
+		
 		let totalPay = basicPay+license+child+merit+longterm
-		resultfrm.resultTotalPay.value = totalPay	; //총액
-		resultfrm.resultTax.value	= basicPay *0.22;//세금
+		resultfrm.resultTotalPay.value = totalPay	; 		//총액
+		resultfrm.resultTax.value	= basicPay *0.22;		//세금
 		resultfrm.resultPay.value	= (totalPay)-(basicPay *0.22);//실수령액
 		resultfrm.resultYearlyPay.value = totalPay*12 + basicPay //연봉  
 	
